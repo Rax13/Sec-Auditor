@@ -7,12 +7,17 @@ public class KGC {
         x = Init.Zr.newRandomElement().getImmutable(); //X
         P = Init.g.powZn(x);  //  P
     }
-    public static void getPKG(String ID, Element Ai){
+    public static Element[] getPKG(String ID, Element Ai){
         String rule = "1";
+        Element[] result = new Element[3];
         ri = Init.Zr.newRandomElement().getImmutable(); //X
         Bi = Init.g.powZn(ri);  //  P
         temp = Ai.add(Bi);
         RH = Init.h(rule);
         bi = ri.add(x.mul(Init.H2(ID,temp,RH)));
+        result[0] = Bi;
+        result[1] = bi;
+        result[2] = RH;
+        return result;
     }
 }

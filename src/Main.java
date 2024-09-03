@@ -9,5 +9,7 @@ public class Main {
         String User_id = "1";
 
         Ai=User.getPKG();
+        Element[] result = new Element[3];
+        result=KGC.getPKG(User_id,Ai);
     }
 }
