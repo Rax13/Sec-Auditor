@@ -2,17 +2,19 @@ import it.unisa.dia.gas.jpbc.Element;
 
 public class KGC {
     public static Element x,P;
+    public static String ID;
     public static Element ri,Bi,RH,bi,temp;
     public static void init_ks(){
         x = Init.Zr.newRandomElement().getImmutable(); //X
         P = Init.g.powZn(x);  //  P
     }
-    public static Element[] getPKG(String ID, Element Ai){
+    public static Element[] getPKG(String id){
         String rule = "1";
+        ID = id;
         Element[] result = new Element[3];
         ri = Init.Zr.newRandomElement().getImmutable(); //X
         Bi = Init.g.powZn(ri);  //  P
-        temp = Ai.add(Bi);
+        temp = User.Ai.add(Bi);
         RH = Init.h(rule);
         bi = ri.add(x.mul(Init.H2(ID,temp,RH)));
         result[0] = Bi;
