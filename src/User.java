@@ -1,8 +1,10 @@
 import it.unisa.dia.gas.jpbc.Element;
 
 public class User {
-    public static String ID;
-    public static Element ai,Ai,tag;
+    public static String ID,name;
+    public static String rule="1";
+    public static String rule1="2";
+    public static Element ai,Ai,tag,Zi,RH1;
     //public static Element[] Ti = new Element[Init.blockNum];
     //public String tag = "" + Manger.RN;
 
@@ -20,16 +22,14 @@ public class User {
         Element right = Bi.mul(KGC.P.powZn(Init.H2(ID,temp,RH)));
         return left.equals(right);
     }
-    public static Element[] StorF(Element[] input){
-        String name="1";
-        for (int i = 0; i < input.length; i++) {
-            input[i] = Init.Zr.newElement(i+1).getImmutable();
-        }
+    public static Element[] StorF(Element[] input,Element[] input2,Element input3){
+        name="1";
+        Element bi=input2[1];
         Element[] Tj = new Element[Init.blockNum];
         for (int i = 0; i < Tj.length; i++) {
-            Tj[i] = Init.g.powZn(input[i].mul(ai.add(KGC.bi)));
+            Tj[i] = Init.g.powZn(input[i].mul(ai.add(bi)));
         }
-        Element Zi=Ai.mul(KGC.Bi.mul(KGC.P.powZn(Init.H2(ID,Ai.add(KGC.Bi),KGC.RH))));
+        Zi=Ai.mul(KGC.Bi.mul(KGC.P.powZn(Init.H2(ID,Ai.add(KGC.Bi),input3))));
         Element seata=Init.h(ID||Ai||KGC.Bi||name||Init.blockNum||Zi);
         tag=ID||Ai||KGC.Bi||name||Init.blockNum||Zi||seata;
         return Tj;

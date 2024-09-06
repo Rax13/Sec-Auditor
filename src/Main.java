@@ -19,8 +19,25 @@ public class Main {
         for (int i = 0; i < Ti.length; i++) {
             Ti[i] = Init.Zr.newElement(i+1).getImmutable();
         }
-        Element[] Tj = new Element[Init.blockNum];
-        Tj=User.StorF(Ti);
-
+        Element[] Tj;
+        Tj=User.StorF(Ti,result,KGC.RH);
+        if(!Blockchain.verifyTAGData(User_id)){
+            System.out.println("Blockchain verify TAG data failed");
+        }
+        //Chal
+        Element[] v;
+        v=Cloud.TPA(User_id);
+        //Resp
+        if(!Cloud.Resp(Ti,Tj)){
+            System.out.println("Cloud verify TAG data failed");
+        }
+        //UptRule
+        KGC.Refreshrule();
+        result[1]=KGC.bi1;
+        if(!User.verifyPKGData(result)){
+            System.out.println("User verify PKG data failed");
+        }
+        Element[] Tj_new;
+        Tj_new=User.StorF(Ti,result,KGC.RH1);
     }
 }
