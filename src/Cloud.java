@@ -3,7 +3,7 @@ import it.unisa.dia.gas.jpbc.Element;
 public class Cloud {
     public static Element C,ro,deta,gama;
     public static Element[] v= new Element[Init.blockNum];
-    public static Element[] TPA(String ID){
+    public static Element[] TPA(){
         Element left = tag.seata;
         Element right = Init.h(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString());
         if(!left.equals(right)){

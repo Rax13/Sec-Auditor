@@ -4,7 +4,7 @@ public class User {
     public static String ID,name;
     public static String rule="1";
     public static String rule1="2";
-    public static Element ai,Ai,Zi,RH1;
+    public static Element ai,Ai,Zi;
     //public static Element[] Ti = new Element[Init.blockNum];
     //public String tag = "" + Manger.RN;
 

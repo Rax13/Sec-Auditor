@@ -25,7 +25,7 @@ public class Main {
         }
         //Chal
         Element[] v;
-        v=Cloud.TPA(User_id);
+        v=Cloud.TPA();
         //Resp
         if(Cloud.Resp(Ti,Tj,v)){
             System.out.println("Cloud verify TAG data succeed");
@@ -43,9 +43,9 @@ public class Main {
         }
         //Chal
         Element[] v_new;
-        v_new=Cloud.TPA(User_id);
+        v_new=Cloud.TPA();
         //Resp
-        if(Cloud.Resp(Ti,Tj_new,v)){
+        if(Cloud.Resp(Ti,Tj_new,v_new)){
             System.out.println("Cloud verify NEW TAG data succeed");
         }
 
