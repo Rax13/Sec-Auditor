@@ -45,7 +45,7 @@ public class Main {
         Element[] v_new;
         v_new=Cloud.TPA(User_id);
         //Resp
-        if(Cloud.Resp(Ti,Tj,v)){
+        if(Cloud.Resp(Ti,Tj_new,v)){
             System.out.println("Cloud verify NEW TAG data succeed");
         }
 
