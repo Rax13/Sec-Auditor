@@ -21,7 +21,7 @@ public class Main {
         }
         Element[] Tj;
         Tj=User.StorF(Ti,result,KGC.RH);
-        if(!Blockchain.verifyTAGData(User_id)){
+        if(!Blockchain.verifyTAGData()){
             System.out.println("Blockchain verify TAG data failed");
         }
         //Chal
@@ -39,7 +39,7 @@ public class Main {
         }
         Element[] Tj_new;
         Tj_new=User.StorF(Ti,result,KGC.RH1);
-        if(!Blockchain.verifyTAGData(User_id)){
+        if(!Blockchain.verifyTAGData()){
             System.out.println("Blockchain verify NEW TAG data failed");
         }
         //Chal
