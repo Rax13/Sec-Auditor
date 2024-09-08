@@ -4,7 +4,7 @@ public class User {
     public static String ID,name;
     public static String rule="1";
     public static String rule1="2";
-    public static Element ai,Ai,tag,Zi,RH1;
+    public static Element ai,Ai,Zi,RH1;
     //public static Element[] Ti = new Element[Init.blockNum];
     //public String tag = "" + Manger.RN;
 
@@ -30,8 +30,14 @@ public class User {
             Tj[i] = Init.g.powZn(input[i].mul(ai.add(bi)));
         }
         Zi=Ai.mul(KGC.Bi.mul(KGC.P.powZn(Init.H2(ID,Ai.add(KGC.Bi),input3))));
-        Element seata=Init.h(ID||Ai||KGC.Bi||name||Init.blockNum||Zi);
-        tag=ID||Ai||KGC.Bi||name||Init.blockNum||Zi||seata;
+        Element seata=Init.h(ID+Ai.toString()+KGC.Bi.toString()+name+Init.blockNum+Zi.toString());
+        tag.ID=ID;
+        tag.name=name;
+        tag.Zi=Zi;
+        tag.Ai=Ai;
+        tag.Bi=KGC.Bi;
+        tag.n=Init.blockNum;
+        tag.seata=seata;
         return Tj;
     }
 }

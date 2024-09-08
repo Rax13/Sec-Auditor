@@ -5,8 +5,8 @@ public class Blockchain {
 
     public static boolean verifyTAGData(String ID){
 
-        Element left = User.tag||ID||User.Ai||KGC.Bi||User.name||Init.blockNum||User.Zi; //g^bi
-        Element right = Init.h(ID||User.Ai||KGC.Bi||User.name||Init.blockNum||User.Zi);
+        Element left = tag.seata;
+        Element right = Init.h(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString());
         return left.equals(right);
     }
 }

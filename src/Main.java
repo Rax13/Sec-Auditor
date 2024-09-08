@@ -28,8 +28,8 @@ public class Main {
         Element[] v;
         v=Cloud.TPA(User_id);
         //Resp
-        if(!Cloud.Resp(Ti,Tj)){
-            System.out.println("Cloud verify TAG data failed");
+        if(Cloud.Resp(Ti,Tj,v)){
+            System.out.println("Cloud verify TAG data succeed");
         }
         //UptRule
         KGC.Refreshrule();
@@ -39,5 +39,16 @@ public class Main {
         }
         Element[] Tj_new;
         Tj_new=User.StorF(Ti,result,KGC.RH1);
+        if(!Blockchain.verifyTAGData(User_id)){
+            System.out.println("Blockchain verify NEW TAG data failed");
+        }
+        //Chal
+        Element[] v_new;
+        v_new=Cloud.TPA(User_id);
+        //Resp
+        if(Cloud.Resp(Ti,Tj,v)){
+            System.out.println("Cloud verify NEW TAG data succeed");
+        }
+
     }
 }

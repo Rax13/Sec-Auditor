@@ -4,9 +4,9 @@ public class Cloud {
     public static Element C,ro,deta,gama;
     public static Element[] v= new Element[Init.blockNum];
     public static Element[] TPA(String ID){
-        Element left = User.tag||ID||User.Ai||KGC.Bi||User.name||Init.blockNum||User.Zi;
-        Element right = Init.h(ID||User.Ai||KGC.Bi||User.name||Init.blockNum||User.Zi);
-        if(left!=right){
+        Element left = tag.seata;
+        Element right = Init.h(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString());
+        if(!left.equals(right)){
             System.out.println("Cloud verify TAG data failed");
         }else {
             for (int i = 0; i < v.length; i++) {
@@ -17,15 +17,15 @@ public class Cloud {
         }
         return v;
     }
-    public static boolean Resp(Element[] input,Element[] input1){
+    public static boolean Resp(Element[] input,Element[] input1,Element[] input2){
         ro = Init.Zr.newZeroElement().getImmutable();
         deta = Init.G1.newOneElement().getImmutable();
         for (int i = 0; i < input.length; i++) {
-            ro=ro.add(input[i].mul(v[i]));
-            deta=deta.mul(input1[i].mul(v[i]));
+            ro=ro.add(input[i].mul(input2[i]));
+            deta=deta.mul(input1[i].powZn(input2[i]));
         }
-        Element left = Init.pairing.pairing(deta.mul(gama), Init.g);
-        Element right = Init.pairing.pairing(User.Zi,C.mul(ro));
+        Element left = Init.pairing.pairing(deta.powZn(gama), Init.g);
+        Element right = Init.pairing.pairing(User.Zi,C.powZn(ro));
         return left.equals(right);
     }
 }
