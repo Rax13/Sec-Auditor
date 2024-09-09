@@ -14,15 +14,15 @@ public class KGC {
         ri = Init.Zr.newRandomElement().getImmutable(); //X
         Bi = Init.g.powZn(ri);  //  P
         temp = User.Ai.add(Bi);
-        RH = Init.h(User.rule);
-        bi = ri.add(x.mul(Init.H2(ID,temp,RH)));
+        RH = Init.H3(User.rule);
+        bi = ri.add(x.mul(Init.H1(ID,temp,RH)));
         result[0] = Bi;
         result[1] = bi;
         result[2] = RH;
         return result;
     }
     public static void Refreshrule(){
-        RH1=Init.h(User.rule1);
-        bi1=bi.sub(x.mul(Init.H2(ID,User.Ai.add(Bi),RH))).add(x.mul(Init.H2(ID,User.Ai.add(Bi),RH1)));
+        RH1=Init.H3(User.rule1);
+        bi1=bi.sub(x.mul(Init.H1(ID,User.Ai.add(Bi),RH))).add(x.mul(Init.H1(ID,User.Ai.add(Bi),RH1)));
     }
 }

@@ -20,16 +20,15 @@ public class Init {
 
         BigInteger q = Init.G1.getOrder();
     }
-    public static Element H1(String element1,Element element2){
-        String hashInputString = element1 + element2.toString();
+    public static Element H2(String element1){
 
         //这里必须加getImmutable(),否则后面其数值会变化
         return Init.pairing.getZr().newElement()
-                .setFromHash(hashInputString.getBytes(), 0, hashInputString.length()).getImmutable();
+                .setFromHash(element1.getBytes(), 0, element1.length()).getImmutable();
     }
 
     //H2返回值为整数
-    public static Element H2(String element1, Element element2,Element element3){
+    public static Element H1(String element1, Element element2,Element element3){
         String hashInputString = element1 + element2.toString() + element3.toString();
 
         //这里必须加getImmutable(),否则后面其数值会变化
@@ -38,7 +37,7 @@ public class Init {
     }
 
     //h返回值为G1类型元素
-    public static Element h(String element1){
+    public static Element H3(String element1){
         return Init.pairing.getG1().newElement()
                 .setFromHash(element1.getBytes(), 0, element1.length()).getImmutable();
     }//h3

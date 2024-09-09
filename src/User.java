@@ -19,7 +19,7 @@ public class User {
         Element RH = input[2];
         Element temp = Bi.add(Ai);
         Element left = Init.g.powZn(bi); //g^bi
-        Element right = Bi.mul(KGC.P.powZn(Init.H2(ID,temp,RH)));
+        Element right = Bi.mul(KGC.P.powZn(Init.H1(ID,temp,RH)));
         return left.equals(right);
     }
     public static Element[] StorF(Element[] input,Element[] input2,Element input3){
@@ -29,8 +29,8 @@ public class User {
         for (int i = 0; i < Tj.length; i++) {
             Tj[i] = Init.g.powZn(input[i].mul(ai.add(bi)));
         }
-        Zi=Ai.mul(KGC.Bi.mul(KGC.P.powZn(Init.H2(ID,Ai.add(KGC.Bi),input3))));
-        Element seata=Init.h(ID+Ai.toString()+KGC.Bi.toString()+name+Init.blockNum+Zi.toString());
+        Zi=Ai.mul(KGC.Bi.mul(KGC.P.powZn(Init.H1(ID,Ai.add(KGC.Bi),input3))));
+        Element seata=Init.H2(ID+Ai.toString()+KGC.Bi.toString()+name+Init.blockNum+Zi.toString());
         tag.ID=ID;
         tag.name=name;
         tag.Zi=Zi;

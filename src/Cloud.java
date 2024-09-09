@@ -5,7 +5,7 @@ public class Cloud {
     public static Element[] v= new Element[Init.blockNum];
     public static Element[] TPA(){
         Element left = tag.seata;
-        Element right = Init.h(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString());
+        Element right = Init.H2(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString());
         if(!left.equals(right)){
             System.out.println("Cloud verify TAG data failed");
         }else {
