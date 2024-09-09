@@ -9,7 +9,6 @@ public class Init {
     public static Field G1, G2, Zr;
     public static Element g;
     public static int blockNum = 2000;
-    public static int chalNum = 100;
 
     public static void init() {
         G1 = pairing.getG1();        //群
@@ -18,7 +17,6 @@ public class Init {
 
         g = Init.G1.newRandomElement().getImmutable();  //生成随机元素
 
-        BigInteger q = Init.G1.getOrder();
     }
     public static Element H2(String element1){
 
