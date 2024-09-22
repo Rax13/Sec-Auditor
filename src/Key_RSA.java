@@ -74,7 +74,7 @@ public class Key_RSA {
     }
 
     //进行签名
-    public static BigInteger[] sign(BigInteger g, KeyPair keys) throws Exception {
+    public static BigInteger[] sign(BigInteger g, KeyPair keys)  {
 
         BigInteger tag1 = Init.H2(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString()).toBigInteger();
         SecureRandom random = new SecureRandom();
@@ -90,7 +90,7 @@ public class Key_RSA {
     }
 
     //验证
-    public static void verify(BigInteger s,BigInteger t, String id, KeyPair keys) throws Exception {
+    public static void verify(BigInteger s,BigInteger t, String id, KeyPair keys)  {
 
         BigInteger tag1 = Init.H2(tag.ID+tag.Ai.toString()+tag.Bi.toString()+tag.name+tag.n+tag.Zi.toString()).toBigInteger();
         BigInteger i = convertIDToBigInteger(id);
