@@ -1,11 +1,35 @@
 import it.unisa.dia.gas.jpbc.Element;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Random;
+import java.math.BigInteger;
 public class Main {
-    public static void main(String[] args) {
+    public static String generateRandomString(int length) {
+        //String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String characters = "0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        return sb.toString();
+    }
+    public static String[] generateRandomStringArray(int arraySize, int stringLength) {
+        String[] randomStrings = new String[arraySize];
+        for (int i = 0; i < arraySize; i++) {
+            randomStrings[i] = generateRandomString(stringLength);
+        }
+        return randomStrings;
+    }
+    public static void main(String[] args) throws Exception {
 
         Init.init();
-        KGC.init_ks();
         String User_id = "1";
+        Key_RSA.KeyPair keys = Key_RSA.initialize(512);
+        //生成用户私钥
+        BigInteger g = Key_RSA.userPrivateKey(User_id, keys);
+        KGC.init_ks();
         //Genkey
         User.getPKG(User_id);
         Element[] result;
@@ -13,21 +37,26 @@ public class Main {
         if(!User.verifyPKGData(result)){
             System.out.println("User verify PKG data failed");
         }
-        //Storf
-        Element[] Ti = new Element[Init.blockNum];
-        for (int i = 0; i < Ti.length; i++) {
-            Ti[i] = Init.Zr.newElement(i+1).getImmutable();
-        }
         Element[] Tj;
-        Tj=User.StorF(Ti,result,KGC.RH);
-        if(!Blockchain.verifyTAGData()){
-            System.out.println("Blockchain verify TAG data failed");
+        String[] Ti_1 = generateRandomStringArray(Init.blockNum, 16);
+        BigInteger[] Ti_2 = new BigInteger[Init.blockNum];
+        for (int i = 0; i < Init.blockNum; i++) {
+            Ti_2[i] = new BigInteger(Ti_1[i]);
         }
+        Element[] Ti_3 = new Element[Init.blockNum];
+        for (int i = 0; i < Init.blockNum; i++) {
+            Ti_3[i] = Init.Zr.newElement().set(Ti_2[i]).getImmutable();
+        }
+        //Storf
+        Tj=User.StorF(Ti_3,result,KGC.RH);
+        //签名
+        BigInteger[] result1=Key_RSA.sign(g,keys);
         //Chal
         Element[] v;
+        Key_RSA.verify(result1[0],result1[1], User_id, keys);
         v=Cloud.TPA();
         //Resp
-        if(Cloud.Resp(Ti,Tj,v)){
+        if(Cloud.Resp(Ti_3,Tj,v)){
             System.out.println("Cloud verify TAG data succeed");
         }
         //UptRule
@@ -37,17 +66,16 @@ public class Main {
             System.out.println("User verify PKG data failed");
         }
         Element[] Tj_new;
-        Tj_new=User.StorF(Ti,result,KGC.RH1);
-        if(!Blockchain.verifyTAGData()){
-            System.out.println("Blockchain verify NEW TAG data failed");
-        }
+        Tj_new=User.StorF(Ti_3,result,KGC.RH1);
+        BigInteger[] result2=Key_RSA.sign(g,keys);
         //Chal
         Element[] v_new;
+        //验证签名
+        Key_RSA.verify(result2[0],result2[1], User_id, keys);
         v_new=Cloud.TPA();
         //Resp
-        if(Cloud.Resp(Ti,Tj_new,v_new)){
+        if(Cloud.Resp(Ti_3,Tj_new,v_new)){
             System.out.println("Cloud verify NEW TAG data succeed");
         }
-
     }
 }

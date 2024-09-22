@@ -8,7 +8,8 @@ public class Init {
     public static Pairing pairing = PairingFactory.getPairing("a.properties");
     public static Field G1, G2, Zr;
     public static Element g;
-    public static int blockNum = 2000;
+    public static int blockNum = 360;
+    public static int Tpa_blockNum = 180;
 
     public static void init() {
         G1 = pairing.getG1();        //群
