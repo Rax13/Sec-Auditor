@@ -44,18 +44,23 @@ public class Main {
         for (int i = 0; i < Init.blockNum; i++) {
             Ti_3[i] = Init.Zr.newElement().set(Ti_2[i]).getImmutable();
         }
+        Timer.begin_timer();
         //Storf
         Tj=User.StorF(Ti_3,result,KGC.RH);
         //签名
         BigInteger[] result1=Key_RSA.sign(g,keys);
+        System.out.println("storf ms " +  Timer.get_timer() );
         //Chal
+        Timer.begin_timer();
         Element[] v;
         Key_RSA.verify(result1[0],result1[1], User_id, keys);
         v=Cloud.TPA();
+        System.out.println("Chal ms " +  Timer.get_timer() );
         //Resp
         if(Cloud.Resp(Ti_3,Tj,v)){
             System.out.println("Cloud verify TAG data succeed");
         }
+        Timer.begin_timer();
         //UptRule
         KGC.Refreshrule();
         result[1]=KGC.bi1;
@@ -74,5 +79,6 @@ public class Main {
         if(Cloud.Resp(Ti_3,Tj_new,v_new)){
             System.out.println("Cloud verify NEW TAG data succeed");
         }
+        System.out.println("UptRule ms " +  Timer.get_timer() );
     }
 }
